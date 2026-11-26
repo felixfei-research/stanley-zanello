@@ -1,0 +1,116 @@
+info: downloading https://releases.lean-lang.org/lean4/v4.24.0/lean-4.24.0-darwin_aarch64.tar.zst
+info: installing <local-build-path>
+Lean (version 4.24.0, arm64-apple-darwin23.6.0, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b, Release)
+Lake version 5.0.0-src+797c613 (Lean version 4.24.0)
+info: mathlib: cloning https://github.com/leanprover-community/mathlib4.git
+info: mathlib: checking out revision 'f897ebcf72cd16f89ab4577d0c826cd14afaafc7'
+info: plausible: cloning https://github.com/leanprover-community/plausible
+info: plausible: checking out revision 'dfd06ebfe8d0e8fa7faba9cb5e5a2e74e7bd2805'
+info: LeanSearchClient: cloning https://github.com/leanprover-community/LeanSearchClient
+info: LeanSearchClient: checking out revision '99657ad92e23804e279f77ea6dbdeebaa1317b98'
+info: importGraph: cloning https://github.com/leanprover-community/import-graph
+info: importGraph: checking out revision 'd768126816be17600904726ca7976b185786e6b9'
+info: proofwidgets: cloning https://github.com/leanprover-community/ProofWidgets4
+info: proofwidgets: checking out revision '556caed0eadb7901e068131d1be208dd907d07a2'
+info: aesop: cloning https://github.com/leanprover-community/aesop
+info: aesop: checking out revision '725ac8cd67acd70a7beaf47c3725e23484c1ef50'
+info: Qq: cloning https://github.com/leanprover-community/quote4
+info: Qq: checking out revision 'dea6a3361fa36d5a13f87333dc506ada582e025c'
+info: batteries: cloning https://github.com/leanprover-community/batteries
+info: batteries: checking out revision '8da40b72fece29b7d3fe3d768bac4c8910ce9bee'
+info: Cli: cloning https://github.com/leanprover/lean4-cli
+info: Cli: checking out revision '91c18fa62838ad0ab7384c03c9684d99d306e1da'
+✔ [2/20] Built Cache.Lean (324ms)
+✔ [5/20] Built Cache.IO (913ms)
+✔ [6/20] Built Batteries.Data.String.Basic (413ms)
+✔ [7/20] Built Batteries.Data.Array.Match (659ms)
+✔ [8/20] Built Batteries.Data.String.Basic:c.o (192ms)
+✔ [9/20] Built Cache.Lean:c.o (1.2s)
+✔ [10/20] Built Cache.Hashing (581ms)
+✔ [11/20] Built Batteries.Data.Array.Match:c.o (163ms)
+✔ [12/20] Built Batteries.Data.String.Matcher (289ms)
+✔ [13/20] Built Batteries.Data.String.Matcher:c.o (139ms)
+✔ [14/20] Built Cache.Hashing:c.o (330ms)
+✔ [15/20] Built Cache.IO:c.o (1.2s)
+✔ [16/20] Built Cache.Requests (931ms)
+✔ [17/20] Built Cache.Main (557ms)
+✔ [18/20] Built Cache.Main:c.o (361ms)
+✔ [19/20] Built Cache.Requests:c.o (843ms)
+✔ [20/20] Built cache:exe (705ms)
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  847k  100  847k    0     0  2218k      0 --:--:-- --:--:-- --:--:-- 2218k
+
+installing leantar 0.1.15
+Fetching ProofWidgets cloud release... done!
+Current branch: HEAD
+Using cache (Azure) from origin: leanprover-community/mathlib4
+Attempting to download 3089 file(s) from leanprover-community/mathlib4 cache
+Downloaded: 1 file(s) [attempted 1/3089 = 0%, 32 KB/s]Downloaded: 4 file(s) [attempted 4/3089 = 0%, 25 KB/s]Downloaded: 14 file(s) [attempted 14/3089 = 0%, 19 KB/s]Downloaded: 37 file(s) [attempted 37/3089 = 1%, 31 KB/s]Downloaded: 77 file(s) [attempted 77/3089 = 2%, 94 KB/s]Downloaded: 126 file(s) [attempted 126/3089 = 4%, 59 KB/s]Downloaded: 175 file(s) [attempted 175/3089 = 5%, 331 KB/s]Downloaded: 224 file(s) [attempted 224/3089 = 7%, 739 KB/s]Downloaded: 263 file(s) [attempted 263/3089 = 8%, 109 KB/s]Downloaded: 302 file(s) [attempted 302/3089 = 9%, 824 KB/s]Downloaded: 351 file(s) [attempted 351/3089 = 11%, 114 KB/s]Downloaded: 390 file(s) [attempted 390/3089 = 12%, 419 KB/s]Downloaded: 438 file(s) [attempted 438/3089 = 14%, 42 KB/s]Downloaded: 487 file(s) [attempted 487/3089 = 15%, 172 KB/s]Downloaded: 536 file(s) [attempted 536/3089 = 17%, 243 KB/s]Downloaded: 585 file(s) [attempted 585/3089 = 18%, 173 KB/s]Downloaded: 634 file(s) [attempted 634/3089 = 20%, 556 KB/s]Downloaded: 653 file(s) [attempted 653/3089 = 21%, 214 KB/s]Downloaded: 702 file(s) [attempted 702/3089 = 22%, 173 KB/s]Downloaded: 761 file(s) [attempted 761/3089 = 24%, 224 KB/s]Downloaded: 810 file(s) [attempted 810/3089 = 26%, 146 KB/s]Downloaded: 849 file(s) [attempted 849/3089 = 27%, 284 KB/s]Downloaded: 888 file(s) [attempted 888/3089 = 28%, 234 KB/s]Downloaded: 907 file(s) [attempted 907/3089 = 29%, 424 KB/s]Downloaded: 956 file(s) [attempted 956/3089 = 30%, 515 KB/s]Downloaded: 995 file(s) [attempted 995/3089 = 32%, 81 KB/s]Downloaded: 1024 file(s) [attempted 1024/3089 = 33%, 203 KB/s]Downloaded: 1063 file(s) [attempted 1063/3089 = 34%, 99 KB/s]Downloaded: 1112 file(s) [attempted 1112/3089 = 35%, 649 KB/s]Downloaded: 1161 file(s) [attempted 1161/3089 = 37%, 288 KB/s]Downloaded: 1210 file(s) [attempted 1210/3089 = 39%, 231 KB/s]Downloaded: 1259 file(s) [attempted 1259/3089 = 40%, 184 KB/s]Downloaded: 1298 file(s) [attempted 1298/3089 = 42%, 155 KB/s]Downloaded: 1317 file(s) [attempted 1317/3089 = 42%, 93 KB/s]Downloaded: 1356 file(s) [attempted 1356/3089 = 43%, 80 KB/s]Downloaded: 1405 file(s) [attempted 1405/3089 = 45%, 412 KB/s]Downloaded: 1444 file(s) [attempted 1444/3089 = 46%, 37 KB/s]Downloaded: 1483 file(s) [attempted 1483/3089 = 48%, 64 KB/s]Downloaded: 1532 file(s) [attempted 1532/3089 = 49%, 55 KB/s]Downloaded: 1571 file(s) [attempted 1571/3089 = 50%, 313 KB/s]Downloaded: 1610 file(s) [attempted 1610/3089 = 52%, 22 KB/s]Downloaded: 1659 file(s) [attempted 1659/3089 = 53%, 382 KB/s]Downloaded: 1698 file(s) [attempted 1698/3089 = 54%, 132 KB/s]Downloaded: 1746 file(s) [attempted 1746/3089 = 56%, 352 KB/s]Downloaded: 1795 file(s) [attempted 1795/3089 = 58%, 52 KB/s]Downloaded: 1844 file(s) [attempted 1844/3089 = 59%, 515 KB/s]Downloaded: 1893 file(s) [attempted 1893/3089 = 61%, 62 KB/s]Downloaded: 1941 file(s) [attempted 1941/3089 = 62%, 381 KB/s]Downloaded: 1990 file(s) [attempted 1990/3089 = 64%, 95 KB/s]Downloaded: 2029 file(s) [attempted 2029/3089 = 65%, 751 KB/s]Downloaded: 2068 file(s) [attempted 2068/3089 = 66%, 1189 KB/s]Downloaded: 2117 file(s) [attempted 2117/3089 = 68%, 43 KB/s]Downloaded: 2166 file(s) [attempted 2166/3089 = 70%, 458 KB/s]Downloaded: 2205 file(s) [attempted 2205/3089 = 71%, 733 KB/s]Downloaded: 2254 file(s) [attempted 2254/3089 = 72%, 166 KB/s]Downloaded: 2302 file(s) [attempted 2302/3089 = 74%, 199 KB/s]Downloaded: 2341 file(s) [attempted 2341/3089 = 75%, 269 KB/s]Downloaded: 2380 file(s) [attempted 2380/3089 = 77%, 119 KB/s]Downloaded: 2419 file(s) [attempted 2419/3089 = 78%, 643 KB/s]Downloaded: 2468 file(s) [attempted 2468/3089 = 79%, 79 KB/s]Downloaded: 2517 file(s) [attempted 2517/3089 = 81%, 117 KB/s]Downloaded: 2556 file(s) [attempted 2556/3089 = 82%, 569 KB/s]Downloaded: 2595 file(s) [attempted 2595/3089 = 84%, 460 KB/s]Downloaded: 2634 file(s) [attempted 2634/3089 = 85%, 873 KB/s]Downloaded: 2678 file(s) [attempted 2678/3089 = 86%, 292 KB/s]Downloaded: 2722 file(s) [attempted 2722/3089 = 88%, 71 KB/s]Downloaded: 2771 file(s) [attempted 2771/3089 = 89%, 334 KB/s]Downloaded: 2819 file(s) [attempted 2819/3089 = 91%, 161 KB/s]Downloaded: 2849 file(s) [attempted 2849/3089 = 92%, 1127 KB/s]Downloaded: 2888 file(s) [attempted 2888/3089 = 93%, 168 KB/s]Downloaded: 2897 file(s) [attempted 2897/3089 = 93%, 118 KB/s]Downloaded: 2936 file(s) [attempted 2936/3089 = 95%, 515 KB/s]Downloaded: 2984 file(s) [attempted 2984/3089 = 96%, 189 KB/s]Downloaded: 3024 file(s) [attempted 3024/3089 = 97%, 104 KB/s]Downloaded: 3073 file(s) [attempted 3073/3089 = 99%, 295 KB/s]Downloaded: 3083 file(s) [attempted 3083/3089 = 99%, 382 KB/s]Downloaded: 3089 file(s) [attempted 3089/3089 = 100%, 382 KB/s]
+Decompressing 3089 file(s)
+Unpacked in 2611 ms
+Completed successfully!
+f897ebcf72cd16f89ab4577d0c826cd14afaafc7
+✔ [3105/3122] Built SZ.Gaussian (5.1s)
+✔ [3106/3122] Built SZ.Spline (5.9s)
+✔ [3107/3122] Built SZ.Statement (3.5s)
+✔ [3108/3122] Built SZ.Series (3.7s)
+✔ [3109/3122] Built SZ.Shape (2.8s)
+✔ [3110/3122] Built SZ.Comparison (3.2s)
+✔ [3111/3122] Built SZ.Reduction (2.6s)
+✔ [3112/3122] Built SZ.Averaging (19s)
+✔ [3113/3122] Built SZ.Expansion (3.3s)
+✔ [3114/3122] Built SZ.Partitions (3.5s)
+✔ [3115/3122] Built SZ.Base (5.9s)
+✔ [3116/3122] Built SZ.Uniform (7.0s)
+✔ [3117/3122] Built SZ.Lift (6.4s)
+✔ [3118/3122] Built SZ.Main (2.9s)
+✔ [3119/3122] Built SZ.Estimates (2.9s)
+✔ [3120/3122] Built SZ.Original (3.2s)
+✔ [3121/3122] Built SZ (2.4s)
+Build completed successfully (3122 jobs).
+def SZ.Conjecture11iv : Prop :=
+∀ (k : ℕ),
+  5 ≤ k →
+    ∃ M,
+      ∀ (m b : ℤ),
+        ↑M ≤ m →
+          SZ.Admissible k m b →
+            (SZ.Good (k * (m - ↑k).toNat) (SZ.originalPolynomial k m b) ↔ (↑k - 2) * b ≠ ↑k * m - 4 * ↑k + 2)
+def SZ.Admissible : ℕ → ℤ → ℤ → Prop :=
+fun k m b => ↑k ≤ m ∧ ↑k - 2 ≤ b ∧ (↑k - 2) * b ≤ ↑k * m - 4 * ↑k + 4 ∧ 2 ∣ ↑k * (m - b)
+def SZ.originalPolynomial : ℕ → ℤ → ℤ → Polynomial ℤ :=
+fun k m b =>
+  SZ.gaussian k (m - ↑k).toNat - Polynomial.X ^ (SZ.exponent k m b).toNat * SZ.gaussian (k - 2) (b - (↑k - 2)).toNat
+def SZ.Good : ℕ → Polynomial ℤ → Prop :=
+fun N P => (∀ n ≤ N, 0 ≤ P.coeff n) ∧ SZ.Unimodal N P
+def SZ.Unimodal : ℕ → Polynomial ℤ → Prop :=
+fun N P => ∃ p ≤ N, MonotoneOn P.coeff (Set.Icc 0 p) ∧ AntitoneOn P.coeff (Set.Icc p N)
+'SZ.stanley_zanello' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.restricted_estimate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.Spline.curvature' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.uniform_of_restricted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.formulations_equivalent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.edge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.small_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.exception_not_unimodal' depends on axioms: [propext, Classical.choice, Quot.sound]
+SZ.original_conjecture (k : ℤ) (hk : 5 ≤ k) :
+  ∃ M,
+    ∀ (m b : ℤ),
+      ↑M ≤ m →
+        k ≤ m →
+          k - 2 ≤ b →
+            (k - 2) * b ≤ k * m - 4 * k + 4 →
+              2 ∣ k * (m - b) →
+                have P :=
+                  SZ.qChoose m.toNat k.toNat -
+                    Polynomial.X ^ (k * (m - b) / 2 + b - 2 * k + 2).toNat * SZ.qChoose b.toNat (k - 2).toNat;
+                (∀ (i : ℕ), 0 ≤ P.coeff i) ∧ SZ.Unimodal P.natDegree P ↔ (k - 2) * b ≠ k * m - 4 * k + 2
+'SZ.original_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.gaussian_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.good_actual_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.restricted_counts_vectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.uniform_first_differences' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.bulk_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+Checked 14 axiom reports and the local Lean sources.

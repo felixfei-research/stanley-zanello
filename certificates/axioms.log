@@ -1,0 +1,43 @@
+def SZ.Conjecture11iv : Prop :=
+∀ (k : ℕ),
+  5 ≤ k →
+    ∃ M,
+      ∀ (m b : ℤ),
+        ↑M ≤ m →
+          SZ.Admissible k m b →
+            (SZ.Good (k * (m - ↑k).toNat) (SZ.originalPolynomial k m b) ↔ (↑k - 2) * b ≠ ↑k * m - 4 * ↑k + 2)
+def SZ.Admissible : ℕ → ℤ → ℤ → Prop :=
+fun k m b => ↑k ≤ m ∧ ↑k - 2 ≤ b ∧ (↑k - 2) * b ≤ ↑k * m - 4 * ↑k + 4 ∧ 2 ∣ ↑k * (m - b)
+def SZ.originalPolynomial : ℕ → ℤ → ℤ → Polynomial ℤ :=
+fun k m b =>
+  SZ.gaussian k (m - ↑k).toNat - Polynomial.X ^ (SZ.exponent k m b).toNat * SZ.gaussian (k - 2) (b - (↑k - 2)).toNat
+def SZ.Good : ℕ → Polynomial ℤ → Prop :=
+fun N P => (∀ n ≤ N, 0 ≤ P.coeff n) ∧ SZ.Unimodal N P
+def SZ.Unimodal : ℕ → Polynomial ℤ → Prop :=
+fun N P => ∃ p ≤ N, MonotoneOn P.coeff (Set.Icc 0 p) ∧ AntitoneOn P.coeff (Set.Icc p N)
+'SZ.stanley_zanello' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.restricted_estimate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.Spline.curvature' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.uniform_of_restricted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.formulations_equivalent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.edge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.small_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.exception_not_unimodal' depends on axioms: [propext, Classical.choice, Quot.sound]
+SZ.original_conjecture (k : ℤ) (hk : 5 ≤ k) :
+  ∃ M,
+    ∀ (m b : ℤ),
+      ↑M ≤ m →
+        k ≤ m →
+          k - 2 ≤ b →
+            (k - 2) * b ≤ k * m - 4 * k + 4 →
+              2 ∣ k * (m - b) →
+                have P :=
+                  SZ.qChoose m.toNat k.toNat -
+                    Polynomial.X ^ (k * (m - b) / 2 + b - 2 * k + 2).toNat * SZ.qChoose b.toNat (k - 2).toNat;
+                (∀ (i : ℕ), 0 ≤ P.coeff i) ∧ SZ.Unimodal P.natDegree P ↔ (k - 2) * b ≠ k * m - 4 * k + 2
+'SZ.original_conjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.gaussian_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.good_actual_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.restricted_counts_vectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.uniform_first_differences' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SZ.bulk_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

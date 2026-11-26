@@ -1,0 +1,441 @@
+{
+  "admissible_cases_excluding_shift_one": 149252,
+  "all_admissible_cases": 149663,
+  "all_failing_tuples_independently_rechecked": 245,
+  "all_negative_first_differences_in_failing_tuples": 438,
+  "edge_check_count_reconstructed_independently": 16106082,
+  "exact_edge_identity_checks": 16106082,
+  "files": {
+    "exception_witnesses": "exception_witnesses.json",
+    "finite_failures": "finite_failures.json",
+    "independent_checks": "independent_checks.json",
+    "runtime": "run_metadata.json"
+  },
+  "finite_failure_count_excluding_shift_one": 245,
+  "first_difference_count_reconstructed_independently": 82440093,
+  "first_differences_inspected_including_exceptions": 82440093,
+  "independent_full_polynomial_case_checks": 496,
+  "independent_gaussian_cross_checks_total": 366,
+  "independent_parameter_rows_checked": 1920,
+  "legacy_grid_gaussian_cross_checks": 176,
+  "parameter_stream_sha256": "1585a52b475da97aeb0ee45d27fa022300bf67fab7af303fc4ff7d77cc50714d",
+  "passing_cases_excluding_shift_one": 149007,
+  "per_k": [
+    {
+      "admissible_cases_excluding_shift_one": 10746,
+      "finite_failure_count": 15,
+      "k": 5,
+      "largest_failing_width_observed": 14,
+      "m_corresponding_to_last_failure": 19,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 19360,
+      "finite_failure_count": 136,
+      "k": 6,
+      "largest_failing_width_observed": 25,
+      "m_corresponding_to_last_failure": 31,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 9040,
+      "finite_failure_count": 9,
+      "k": 7,
+      "largest_failing_width_observed": 10,
+      "m_corresponding_to_last_failure": 17,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 17226,
+      "finite_failure_count": 12,
+      "k": 8,
+      "largest_failing_width_observed": 9,
+      "m_corresponding_to_last_failure": 17,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 8308,
+      "finite_failure_count": 5,
+      "k": 9,
+      "largest_failing_width_observed": 10,
+      "m_corresponding_to_last_failure": 19,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 16160,
+      "finite_failure_count": 25,
+      "k": 10,
+      "largest_failing_width_observed": 13,
+      "m_corresponding_to_last_failure": 23,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 7902,
+      "finite_failure_count": 4,
+      "k": 11,
+      "largest_failing_width_observed": 6,
+      "m_corresponding_to_last_failure": 17,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 15520,
+      "finite_failure_count": 8,
+      "k": 12,
+      "largest_failing_width_observed": 8,
+      "m_corresponding_to_last_failure": 20,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 7644,
+      "finite_failure_count": 4,
+      "k": 13,
+      "largest_failing_width_observed": 6,
+      "m_corresponding_to_last_failure": 19,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 15093,
+      "finite_failure_count": 16,
+      "k": 14,
+      "largest_failing_width_observed": 11,
+      "m_corresponding_to_last_failure": 25,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 7465,
+      "finite_failure_count": 3,
+      "k": 15,
+      "largest_failing_width_observed": 6,
+      "m_corresponding_to_last_failure": 21,
+      "tested_widths": [
+        1,
+        160
+      ]
+    },
+    {
+      "admissible_cases_excluding_shift_one": 14788,
+      "finite_failure_count": 8,
+      "k": 16,
+      "largest_failing_width_observed": 10,
+      "m_corresponding_to_last_failure": 26,
+      "tested_widths": [
+        1,
+        160
+      ]
+    }
+  ],
+  "q_pascal_auxiliary_states_computed": 3644,
+  "range": {
+    "max_k": 16,
+    "max_width": 160,
+    "min_k": 5,
+    "min_width": 1,
+    "t": "0 <= t <= floor(k*width/(k-2)); k*width-(k-2)*t even"
+  },
+  "reference_comparison": {
+    "all_retained_numerical_claims_match": true,
+    "performed": true,
+    "reference_file": "reference_original_results.json",
+    "reference_sha256": "a3a45d640ad9b830af6139f07451480b25f698934ad62bc1f2a7fbe7e0f81a02"
+  },
+  "shift_one_cases_all_widths": 411,
+  "shift_one_nonunimodality_checks_width_at_least_two": 399,
+  "spline_diagnostics": [
+    {
+      "k": 5,
+      "max_scaled_error": "241/2640",
+      "points": [
+        30,
+        50,
+        74,
+        75
+      ],
+      "width": 30
+    },
+    {
+      "k": 5,
+      "max_scaled_error": "237/2480",
+      "points": [
+        90,
+        150,
+        224,
+        225
+      ],
+      "width": 90
+    },
+    {
+      "k": 5,
+      "max_scaled_error": "5629/58320",
+      "points": [
+        240,
+        400,
+        599,
+        600
+      ],
+      "width": 240
+    },
+    {
+      "k": 6,
+      "max_scaled_error": "2888923/155139840",
+      "points": [
+        30,
+        60,
+        89,
+        90
+      ],
+      "width": 30
+    },
+    {
+      "k": 6,
+      "max_scaled_error": "1826993/109866240",
+      "points": [
+        90,
+        180,
+        269,
+        270
+      ],
+      "width": 90
+    },
+    {
+      "k": 6,
+      "max_scaled_error": "131174203/8196560640",
+      "points": [
+        240,
+        480,
+        719,
+        720
+      ],
+      "width": 240
+    },
+    {
+      "k": 7,
+      "max_scaled_error": "5627863/12677898240",
+      "points": [
+        30,
+        70,
+        104,
+        105
+      ],
+      "width": 30
+    },
+    {
+      "k": 7,
+      "max_scaled_error": "861993577/3214958100480",
+      "points": [
+        90,
+        210,
+        314,
+        315
+      ],
+      "width": 90
+    },
+    {
+      "k": 7,
+      "max_scaled_error": "20340068137/56229113364480",
+      "points": [
+        240,
+        560,
+        839,
+        840
+      ],
+      "width": 240
+    },
+    {
+      "k": 8,
+      "max_scaled_error": "4193079769/75204067368960",
+      "points": [
+        30,
+        80,
+        119,
+        120
+      ],
+      "width": 30
+    },
+    {
+      "k": 8,
+      "max_scaled_error": "533837808289/7055713424793600",
+      "points": [
+        90,
+        240,
+        359,
+        360
+      ],
+      "width": 90
+    },
+    {
+      "k": 8,
+      "max_scaled_error": "190978851342823/2213233284945715200",
+      "points": [
+        240,
+        640,
+        959,
+        960
+      ],
+      "width": 240
+    },
+    {
+      "k": 9,
+      "max_scaled_error": "3395431729/280052640000000",
+      "points": [
+        30,
+        90,
+        134,
+        135
+      ],
+      "width": 30
+    },
+    {
+      "k": 9,
+      "max_scaled_error": "28640317829161/2021685311520000000",
+      "points": [
+        90,
+        270,
+        404,
+        405
+      ],
+      "width": 90
+    },
+    {
+      "k": 9,
+      "max_scaled_error": "68658838732189/4706844720480000000",
+      "points": [
+        240,
+        720,
+        1079,
+        1080
+      ],
+      "width": 240
+    },
+    {
+      "k": 10,
+      "max_scaled_error": "9248908751163209/5355075574569885696000",
+      "points": [
+        30,
+        100,
+        149,
+        150
+      ],
+      "width": 30
+    },
+    {
+      "k": 10,
+      "max_scaled_error": "3819281998637372809/2029624587626799292416000",
+      "points": [
+        90,
+        300,
+        449,
+        450
+      ],
+      "width": 90
+    },
+    {
+      "k": 10,
+      "max_scaled_error": "371160501083633581603/195246478668232164483072000",
+      "points": [
+        240,
+        800,
+        1199,
+        1200
+      ],
+      "width": 240
+    },
+    {
+      "k": 11,
+      "max_scaled_error": "2314060038326809/11072512838269403136000",
+      "points": [
+        30,
+        110,
+        164,
+        165
+      ],
+      "width": 30
+    },
+    {
+      "k": 11,
+      "max_scaled_error": "4934781142696324808663/23220742443802355325468672000",
+      "points": [
+        90,
+        330,
+        494,
+        495
+      ],
+      "width": 90
+    },
+    {
+      "k": 11,
+      "max_scaled_error": "3543115493020354363286113/16847024983243812471960502272000",
+      "points": [
+        240,
+        880,
+        1319,
+        1320
+      ],
+      "width": 240
+    },
+    {
+      "k": 12,
+      "max_scaled_error": "606018094904675416751/28318984708962845393879040000",
+      "points": [
+        30,
+        120,
+        179,
+        180
+      ],
+      "width": 30
+    },
+    {
+      "k": 12,
+      "max_scaled_error": "201814584210414835437593/9657289043554010267421573120000",
+      "points": [
+        90,
+        360,
+        539,
+        540
+      ],
+      "width": 90
+    },
+    {
+      "k": 12,
+      "max_scaled_error": "2489853165289712483179639151/122537820694894765974596341923840000",
+      "points": [
+        240,
+        960,
+        1439,
+        1440
+      ],
+      "width": 240
+    }
+  ],
+  "status": "Finite exact verification only; not an infinite theorem, threshold proof, or proof-assistant verification.",
+  "verifier_version": "2.0"
+}

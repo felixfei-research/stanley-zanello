@@ -1,0 +1,698 @@
+\documentclass[11pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[expansion=false]{microtype}
+\usepackage[hidelinks]{hyperref}
+\input{author.tex}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\qbinom}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}_q}
+\newcommand{\NN}{\mathbb Z_{\ge0}}
+\newcommand{\coeff}[1]{[q^{#1}]}
+
+\newcommand{\PaperTitle}{Uniform First Differences of Gaussian Polynomials and a Proof of the Stanley\textendash{}Zanello Unimodality Conjecture}
+\title[First differences of Gaussian polynomials]{\PaperTitle}
+\author{\AuthorName}
+\thanks{Alternative name: \AuthorAlternativeName. ORCID: \href{https://orcid.org/0009-0000-8891-7101}{0009-0000-8891-7101}.}
+\ifx\AuthorAffiliation\empty\else\address{\AuthorAffiliation}\fi
+\ifx\AuthorEmail\empty\else\email{\AuthorEmail}\fi
+\date{26 November 2026}
+\subjclass[2020]{05A17, 05A16}
+\keywords{Gaussian polynomial, integer partition, unimodality, asymptotic enumeration}
+\hypersetup{pdftitle={\PaperTitle},pdfauthor={\AuthorName}}
+
+\begin{document}
+\begin{abstract}
+We prove the asymptotic unimodality conjecture of Stanley and Zanello for
+differences of Gaussian polynomials whose lower indices differ by two.
+For every fixed \(k\ge5\), all admissible centered differences are
+coefficientwise nonnegative and unimodal once the upper parameter is
+sufficiently large, apart from the exception stated in their conjecture.
+The proof combines an injection for the edge coefficients with a uniform
+estimate for first differences in the remaining range. A two-term
+restricted-partition estimate and averaging over subsets of a fixed
+cardinality give a cardinal-spline approximation with error
+\(O_k(\ell^{k-4})\), where \(\ell\) is the width of the height-\(k\) rectangle.
+From degree \(\ell\) to \(\lfloor k\ell/2\rfloor\), its first differences
+have a lower bound of order \(\ell^{k-3}\), while those of the shifted
+term are uniformly \(O_k(\ell^{k-4})\).
+A complete Lean~4 formalization proves Conjecture~1.1(iv) in its original
+integer parameters.
+\end{abstract}
+\maketitle
+\enlargethispage{2pt}
+
+\section{Introduction and main result}
+
+For \(r,w\in\NN\), write
+\begin{equation}\label{eq:G}
+G_{r,w}(q)=\qbinom{r+w}{r}
+=\prod_{j=1}^{r}\frac{1-q^{w+j}}{1-q^j}.
+\end{equation}
+This is the generating polynomial for partitions contained in an
+\(r\)-by-\(w\) rectangle. Its coefficients are nonnegative, and it is
+symmetric about degree \(rw/2\). The empty product, and also \(G_{r,0}\),
+is \(1\). Coefficients outside the support of a polynomial are taken to
+be zero.
+
+Reiner and Stanton~\cite{RS98} studied unimodality of differences of
+specialized Schur functions, including centered differences of Gaussian
+polynomials. Stanley and Zanello~\cite{SZ20} proposed a broader
+conjecture. For fixed \(k\ge5\), their Conjecture~1.1(iv) asserts that
+\begin{equation}\label{eq:original}
+f(k,m,b;q)=\qbinom{m}{k}
+-q^{\,k(m-b)/2+b-2k+2}\qbinom{b}{k-2}
+\end{equation}
+has nonnegative, unimodal coefficients for all sufficiently large integers
+\(m\ge k\),
+uniformly over integers \(b\) such that
+\begin{equation}\label{eq:admissible-original}
+k-2\le b\le\frac{km-4k+4}{k-2},
+\qquad k(m-b)\equiv0\pmod2,
+\end{equation}
+except for
+\begin{equation}\label{eq:exception-original}
+b=\frac{km-4k+2}{k-2}
+\end{equation}
+when this is an integer.
+They proved the case \(k=5\) and characterized the smaller lower
+indices. Koutschan, Uncu, and Wong~\cite{KUW23} subsequently proved the
+cases \(k=6,7\), with explicit information on small parameters.
+
+We prove the assertion for every fixed \(k\ge5\). The threshold depends only on \(k\); no explicit value is obtained.
+
+\begin{theorem}\label{thm:main}
+For each integer \(k\ge5\), there exists a nonnegative integer
+\(\ell_0(k)\) such
+that the following holds. If \(\ell\) is an integer with
+\(\ell\ge\ell_0(k)\) and \(s,t\in\NN\)
+satisfy
+\begin{equation}\label{eq:alignment}
+(k-2)t+2s=k\ell,\qquad s\ne1,
+\end{equation}
+then
+\begin{equation}\label{eq:F}
+F(q)=G_{k,\ell}(q)-q^sG_{k-2,t}(q)
+\end{equation}
+has nonnegative, symmetric, unimodal coefficients.
+If \(\ell,t\in\NN\) and
+\((k-2)t+2=k\ell\), then the coefficients of \eqref{eq:F},
+with \(s=1\), are not unimodal.
+\end{theorem}
+
+The substitutions
+\begin{equation}\label{eq:substitution}
+\ell=m-k,\qquad t=b-k+2,\qquad
+s=\frac{k\ell-(k-2)t}{2}
+\end{equation}
+identify \eqref{eq:F} with \eqref{eq:original}.
+Indeed,
+\[
+  2s=km-4k+4-(k-2)b=k(m-b)+2(b-2k+2).
+\]
+The upper bound on \(b\) is equivalent to \(2s\ge0\), and the
+parity condition makes \(s\) an integer even when \(m-b<0\).
+The lower bound on \(b\) is exactly \(t\ge0\).
+Conversely, recover \(m=k+\ell\) and \(b=k-2+t\) from any aligned
+triple. The exceptional equality is equivalent to \(2s=2\).
+A width threshold \(W(k)\) gives the threshold \(k+W(k)\) in \(m\). Thus Theorem~\ref{thm:main} proves
+\cite[Conjecture~1.1(iv)]{SZ20}.
+The quantifier on \(m\) distinguishes this asymptotic result from the
+earlier Reiner--Stanton conjecture at finite parameters.
+
+The asymptotic behavior of Gaussian coefficients with one parameter
+fixed was studied by Stanley and Zanello~\cite{SZ16}.
+Their Theorem~2.4 gives the truncated-power coefficient profile
+that appears below as a cardinal-spline density, and their
+Theorem~2.6 gives the first-difference asymptotic
+at a fixed distance from the center when \(k\ge6\) is even.
+The subset-cardinality averaging used below is also present in the
+proof of that theorem. Here we use a shifted restricted-partition
+estimate to obtain a remainder uniform over the coefficient index,
+for both parities of \(k\). The resulting lower bound, together with
+a lower-degree comparison and an edge injection, proves the
+conjecture.
+
+An earlier, different conjecture of Stanley and Zanello, concerning
+partitions into a bounded number of distinct parts, was proved by
+Alpoge~\cite{Alpoge14}. That proof also combines elementary edge
+arguments with an analytic estimate involving sums of uniform random
+variables. For the centered Gaussian differences in \eqref{eq:original}, the
+comparison requires an estimate uniform in the coefficient index.
+
+For equal rectangle widths, $t=\ell$ and $s=\ell$, the difference
+specializes to the family studied by Chen and Jia~\cite{CJ}.
+For this family, a recent preprint of Kang~\cite{Kang} reports strict
+increase from degree one to the middle for even widths at least eight
+and heights at least fifteen. Melczer, Panova, and Pemantle~\cite{MPP}
+obtain sharp first-difference asymptotics for a single rectangle when
+its two side lengths grow at comparable rates. Our estimates allow the
+height to stay fixed and the smaller width to vary across the full
+admissible range.
+
+In all estimates, constants carrying a subscript \(k\), or implicit
+in \(O_k(\cdot)\), depend only on \(k\). In particular, they do not
+depend on \(s,t\), or on a coefficient index in the specified range.
+We use \(x_+=\max(x,0)\).
+
+\section{A shifted restricted-partition estimate}
+
+For \(r\ge3\), define
+\begin{equation}\label{eq:restricted}
+H_r(q)=\prod_{j=2}^{r}(1-q^j)^{-1},
+\qquad a_r(v)=\coeff{v}H_r(q),
+\end{equation}
+with \(a_r(v)=0\) for \(v<0\).
+General formulas for the polynomial part of a restricted partition
+function are classical. We refer to Beck, Gessel, and
+Komatsu~\cite{BGK}. Here we need the top two terms together with an
+error estimate valid across the break at zero.
+For nonnegative \(v\), the number \(a_r(v)\) counts partitions of \(v\)
+with parts in \(\{2,\ldots,r\}\).
+
+\begin{lemma}\label{lem:restricted}
+Fix \(k\ge5\), and put
+\[
+d=k-2,\qquad S=\sum_{j=2}^{k}j=\frac{k(k+1)}2-1.
+\]
+Uniformly over integer \(v\),
+\begin{equation}\label{eq:restricted-estimate}
+a_k(v)=\frac{(v+S/2)_+^d}{k!\,d!}
++O_k\bigl((1+v_+)^{d-2}\bigr).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The rational function \(H_k(q)\) has poles only at roots of unity.
+Its pole at \(q=1\) has order \(k-1=d+1\).
+Writing \(z=1-q\), we obtain
+\[
+1-q^j=jz\left(1-\frac{j-1}{2}z+O_j(z^2)\right)
+\]
+and hence
+\begin{equation}\label{eq:root-one}
+H_k(q)=\frac{z^{-(d+1)}}{k!}
+\left(1+\frac{k(k-1)}4z+O_k(z^2)\right).
+\end{equation}
+Set \(A=k(k-1)/4\). The highest two terms of the principal part in
+\eqref{eq:root-one} contribute
+\begin{equation}\label{eq:root-one-coeff}
+\frac1{k!}
+\left(\binom{v+d}{d}
++A\binom{v+d-1}{d-1}\right)
+\end{equation}
+to the coefficient of \(q^v\), for \(v\ge0\).
+The denominator has larger degree than the numerator, so the partial
+fraction decomposition has no polynomial part. All remaining terms at one contribute a polynomial
+of degree at most \(d-2\).
+The coefficient of \(v^{d-1}\) inside the parentheses in
+\eqref{eq:root-one-coeff} is
+\[
+\frac{(d+1)/2+A}{(d-1)!}
+=\frac{S/2}{(d-1)!},
+\]
+since
+\[
+\frac{d+1}{2}+A
+=\frac{k-1}{2}+\frac{k(k-1)}4
+=\frac{k(k+1)-2}{4}.
+\]
+Therefore the contribution of the pole at \(1\) is
+\begin{equation}\label{eq:root-one-shift}
+\frac{(v+S/2)^d}{k!\,d!}
++O_k((v+1)^{d-2}).
+\end{equation}
+
+For a root of unity of order \(a\ge2\), the vanishing denominator
+factors are precisely those indexed by multiples of \(a\). Each has
+a simple zero there. Thus the point is a pole exactly when \(a\le k\);
+its order is then \(\lfloor k/a\rfloor\le\lfloor k/2\rfloor\).
+By partial fractions, its coefficient contribution is a polynomial
+of degree at most \(\lfloor k/2\rfloor-1\), multiplied by a number
+of modulus one to the power \(v\).
+Since
+\[
+\lfloor k/2\rfloor-1\le k-4=d-2
+\qquad(k\ge5),
+\]
+the sum of these contributions is \(O_k((v+1)^{d-2})\).
+For \(k=5\) the pole at \(-1\) has order two and contributes at most a linear error, exactly the allowed order.
+Together with \eqref{eq:root-one-shift}, this proves
+\eqref{eq:restricted-estimate} for \(v\ge0\).
+
+For \(v<0\), the left side is zero.
+The positive-part main term can be nonzero only in the bounded
+interval \(-S/2<v<0\), where it is \(O_k(1)\).
+For \(v\le-S/2\) both main quantities vanish.
+This proves the uniform extension to all integers.
+\end{proof}
+
+\section{Uniform first differences}
+
+Retain \(S=k(k+1)/2-1\), and set
+\begin{equation}\label{eq:D}
+D_{k,\ell}(n)=\coeff{n}(1-q)G_{k,\ell}(q).
+\end{equation}
+Thus \(D_{k,\ell}(n)\) is the difference between consecutive
+coefficients of \(G_{k,\ell}\), with the coefficient at \(-1\) set
+equal to zero.
+Define
+\begin{equation}\label{eq:shift-parameters}
+L=\ell+\frac{k+1}{2},\qquad
+\delta=\frac{k\ell+1}{2}-n,\qquad
+x=\frac k2-\frac{\delta}{L}.
+\end{equation}
+
+Let \(B_k\) be the \(k\)-fold convolution of the indicator of
+\([0,1]\), or equivalently the density of the sum of \(k\) independent
+uniform random variables on that interval.
+Inclusion--exclusion for a simplex intersected with the unit cube
+gives
+\begin{equation}\label{eq:spline}
+B_k(x)=\frac1{(k-1)!}
+\sum_{j=0}^{k}(-1)^j\binom{k}{j}(x-j)_+^{k-1}.
+\end{equation}
+For completeness, the volume of
+\(\{u\in[0,1]^k:\sum u_i\le x\}\) is
+\(\frac1{k!}\sum_j(-1)^j\binom{k}{j}(x-j)_+^k\);
+differentiating gives \eqref{eq:spline}.
+
+\begin{proposition}\label{prop:uniform}
+For each fixed \(k\ge5\), uniformly over
+\(0\le n\le\lfloor k\ell/2\rfloor\) as \(\ell\to\infty\),
+\begin{equation}\label{eq:uniform}
+D_{k,\ell}(n)=\frac{L^{k-2}}{k!}B_k'(x)
++O_k(L^{k-4}),
+\end{equation}
+where \(L,x\) are given by \eqref{eq:shift-parameters}.
+\end{proposition}
+
+\begin{proof}
+Expanding the numerator in \eqref{eq:G} gives
+\begin{equation}\label{eq:subset}
+D_{k,\ell}(n)=
+\sum_{J\subseteq[k]}(-1)^{|J|}
+a_k\left(n-|J|\ell-\sum_{r\in J}r\right).
+\end{equation}
+Here \([k]=\{1,\ldots,k\}\).
+All nonnegative arguments in the sum are at most
+\(n=O_k(L)\). Lemma~\ref{lem:restricted} therefore introduces a total
+error \(O_k(L^{k-4})\), since the number of subsets depends only on
+\(k\).
+
+For \(J\subseteq[k]\), put
+\[
+\varepsilon_J=\sum_{r\in J}\left(r-\frac{k+1}{2}\right).
+\]
+Using \(Lx=n+S/2\), direct calculation yields
+\begin{equation}\label{eq:exact-shift}
+n-|J|\ell-\sum_{r\in J}r+\frac S2
+=L(x-|J|)-\varepsilon_J.
+\end{equation}
+For each \(j\in\{0,\ldots,k\}\),
+\begin{equation}\label{eq:average-zero}
+\sum_{|J|=j}\varepsilon_J=0.
+\end{equation}
+Indeed, for \(j\ge1\), each index occurs in
+\(\binom{k-1}{j-1}\) subsets and
+\(\sum_{r=1}^{k}(r-(k+1)/2)=0\).
+The empty-subset case is immediate.
+
+Let \(d=k-2\) and \(\phi(y)=y_+^d\).
+Since \(d\ge3\), the function \(\phi\) is \(C^2\), including at zero.
+Each \(\varepsilon_J\) is bounded in terms of \(k\), and Taylor's
+theorem, uniformly for \(z=O_k(L)\), gives
+\[
+\phi(z-\varepsilon_J)
+=\phi(z)-\varepsilon_J\phi'(z)+O_k(L^{d-2}).
+\]
+This follows from
+\(\sup|\phi''(y)|=O_k(L^{d-2})\) on the relevant bounded-length
+interval about \(z\), and remains valid if the interval crosses zero.
+Take \(z=L(x-j)\) and sum over \(|J|=j\).
+The linear terms vanish by \eqref{eq:average-zero}, leaving
+\begin{equation}\label{eq:taylor-group}
+\sum_{|J|=j}\phi(L(x-j)-\varepsilon_J)
+=\binom{k}{j}L^d(x-j)_+^d+O_k(L^{d-2}).
+\end{equation}
+Equations \eqref{eq:subset}--\eqref{eq:taylor-group} now imply
+\[
+D_{k,\ell}(n)=
+\frac{L^d}{k!\,d!}
+\sum_{j=0}^{k}(-1)^j\binom{k}{j}(x-j)_+^d
++O_k(L^{d-2}).
+\]
+Differentiating \eqref{eq:spline} proves \eqref{eq:uniform}.
+\end{proof}
+
+\begin{lemma}\label{lem:curvature}
+For each \(k\ge5\), there is a constant \(\alpha_k>0\) such that
+\begin{equation}\label{eq:derivative-lower}
+B_k'(x)\ge\alpha_k(k/2-x)
+\qquad(1/2\le x\le k/2).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The density \(B_2\) is triangular. Convolution gives, for \(j\ge3\),
+\begin{equation}\label{eq:convolution}
+B_j'(x)=B_{j-1}(x)-B_{j-1}(x-1).
+\end{equation}
+Each \(B_j\) is supported on \([0,j]\), is positive in its interior,
+and is symmetric about \(j/2\).
+We show by induction that \(B_j'(x)>0\) on \((0,j/2)\).
+For \(x<1\), the second term in \eqref{eq:convolution} is zero and
+the first is positive. For \(1\le x<j/2\), both arguments are in
+the support, and \(x\) is nearer to \((j-1)/2\) than \(x-1\), because
+\[
+\left(x-\frac{j-1}{2}\right)^2
+-\left(x-1-\frac{j-1}{2}\right)^2=2x-j<0.
+\]
+The symmetric strict unimodality of \(B_{j-1}\) gives the claim.
+The triangular case supplies the induction base, and symmetry
+gives the negative derivative on the right half.
+
+For \(k\ge5\), differentiation of \eqref{eq:convolution} at the
+center is valid and gives
+\[
+B_k''(k/2)=
+B_{k-1}'(k/2)-B_{k-1}'(k/2-1)
+=2B_{k-1}'(k/2)<0.
+\]
+Consequently \(B_k'(x)/(k/2-x)\) is positive on
+\([1/2,k/2)\) and extends continuously to
+\(-B_k''(k/2)>0\) at its right endpoint.
+Its positive minimum on this compact interval proves
+\eqref{eq:derivative-lower}.
+\end{proof}
+
+\begin{corollary}\label{cor:bulk}
+For fixed \(k\ge5\), there are constants \(\gamma_k>0\) and
+\(\ell_1(k)\) such that
+\begin{equation}\label{eq:bulk-lower}
+D_{k,\ell}(n)\ge\gamma_k L^{k-3}
+\end{equation}
+whenever \(\ell\ge\ell_1(k)\) and
+\(\ell\le n\le\lfloor k\ell/2\rfloor\).
+\end{corollary}
+
+\begin{proof}
+For these indices, \(\delta\ge1/2\).
+Also \(x\ge(\ell+S/2)/L\ge1/2\), and \(x<k/2\).
+Proposition~\ref{prop:uniform} and Lemma~\ref{lem:curvature} give
+\[
+D_{k,\ell}(n)
+\ge\frac{\alpha_k}{k!}\delta L^{k-3}-C_kL^{k-4}
+\ge\frac{\alpha_k}{2k!}L^{k-3}-C_kL^{k-4}.
+\]
+For sufficiently large \(L\), this is at least
+\(\alpha_kL^{k-3}/(4k!)\).
+\end{proof}
+
+\begin{remark}
+When \(k\ell\) is odd, the first difference between the two equal
+middle coefficients has index \((k\ell+1)/2\), outside the range
+\(n\le\lfloor k\ell/2\rfloor\) used here.
+The half-unit offset in
+\(\delta=(k\ell+1)/2-n\) matters at the middle coefficient.
+A remainder only of order \(L^{k-3}\) would be insufficient there.
+The shifted leading term in Lemma~\ref{lem:restricted} and the
+cancellation in \eqref{eq:average-zero} give the smaller uniform
+remainder needed in Corollary~\ref{cor:bulk}.
+\end{remark}
+
+\section{Comparison and proof of the conjecture}
+
+\begin{lemma}\label{lem:small}
+Fix \(k\ge5\).
+For all nonnegative integers \(\ell,s,t\) satisfying
+\eqref{eq:alignment}, and all \(0\le n\le\lfloor k\ell/2\rfloor\),
+\begin{equation}\label{eq:small}
+\left|\coeff{n}(1-q)q^sG_{k-2,t}(q)\right|
+\le C_k(\ell+1)^{k-4}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Put \(h=k-2\ge3\).
+For \(v\ge0\), a solution of
+\[
+2z_2+3z_3+\cdots+hz_h=v,\qquad z_j\in\NN,
+\]
+is determined by \(z_2,\ldots,z_{h-1}\), if \(z_h\) exists.
+Therefore
+\[
+a_h(v)\le(v+1)^{h-2}.
+\]
+Expanding the smaller numerator gives
+\[
+\coeff{n}(1-q)q^sG_{h,t}(q)
+=\sum_{J\subseteq[h]}(-1)^{|J|}
+a_h\left(n-s-|J|t-\sum_{r\in J}r\right).
+\]
+Every nonnegative argument is at most \(n\le k\ell/2\).
+The absolute value is thus at most
+\[
+2^h(k\ell/2+1)^{h-2}
+=O_k((\ell+1)^{k-4}),
+\]
+uniformly in \(s,t\).
+\end{proof}
+
+\begin{lemma}\label{lem:edge}
+Fix an integer \(k\ge5\), and let \(\ell,s,t\in\NN\) satisfy
+\eqref{eq:alignment}, including \(s\ne1\).
+Then the polynomial \(F\) in \eqref{eq:F} satisfies
+\begin{equation}\label{eq:edge}
+\coeff{n}(1-q)F(q)\ge0\qquad(0\le n\le\ell).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The numerator of \(G_{k,\ell}\) in \eqref{eq:G} has no nonconstant
+term of degree at most \(\ell\). Thus
+\(D_{k,\ell}(n)=a_k(n)\) in this range.
+If \(s>n\), the shifted term contributes zero.
+Otherwise \(s\le n\le\ell\), and \eqref{eq:alignment} implies
+\[
+t=\frac{k\ell-2s}{k-2}\ge\ell.
+\]
+It follows that \(0\le n-s\le t\), so the smaller numerator also has
+no nonconstant contribution at the relevant index. Hence
+\begin{equation}\label{eq:edge-difference}
+\coeff{n}(1-q)F(q)=a_k(n)-a_{k-2}(n-s).
+\end{equation}
+
+For \(s=0\), inclusion of the allowed part sizes gives nonnegativity.
+For \(s\ge2\), choose \(u,v\in\NN\) with \(s=2u+3v\).
+Append \(u\) parts of size 2 and \(v\) parts of size 3 to each
+partition counted by \(a_{k-2}(n-s)\).
+This is an injection into the partitions counted by \(a_k(n)\):
+removing the prescribed added parts recovers the original partition.
+The required part sizes are available because \(k-2\ge3\).
+Since \(s\ne1\), these cases exhaust the possibilities.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let \(N=k\ell\), and write \(F(q)=\sum_{n=0}^{N}c_nq^n\),
+padding by zeros when needed.
+The degree of \(G_{k-2,t}\) is \(N-2s\), so both terms in
+\eqref{eq:F} are symmetric about \(N/2\). Thus \(c_n=c_{N-n}\).
+
+Lemma~\ref{lem:edge} gives \(c_n-c_{n-1}\ge0\) for
+\(0\le n\le\ell\), with \(c_{-1}=0\).
+For \(\ell\le n\le\lfloor N/2\rfloor\),
+Corollary~\ref{cor:bulk} and Lemma~\ref{lem:small} give
+\[
+c_n-c_{n-1}
+\ge\gamma_kL^{k-3}-C_k(\ell+1)^{k-4}>0
+\]
+for sufficiently large \(\ell\), with a threshold depending only
+on \(k\).
+Since \(c_0\) is zero if \(s=0\) and is one otherwise, all
+coefficients in the left half are nonnegative and nondecreasing.
+Symmetry proves nonnegativity and unimodality for the whole sequence.
+
+Finally suppose \(s=1\). Alignment forces \(\ell\ge1\).
+The first two coefficients of \(G_{k,\ell}\) are both one, and
+the shifted polynomial subtracts one at degree one. Consequently
+\(c_0=1\) and \(c_1=0\). Symmetry gives \(c_N=1\), with \(N\ge5\).
+A sequence that drops at the first step and subsequently rises
+cannot be unimodal. This also covers width one.
+\end{proof}
+
+\section{Formal Verification}
+
+The accompanying Lean~4 project proves Theorem~\ref{thm:main} and
+translates the conclusion back to the original parameters. Its public
+theorem \texttt{SZ.original\_conjecture} quantifies over integers
+\(k,m,b\), uses the exponent in \eqref{eq:original}, and tests
+unimodality through the actual degree of the difference. The degree
+can drop when the outer coefficients cancel. The project proves that
+trimming the terminal zeros preserves the required property.
+Its Gaussian polynomials satisfy the denominator-cleared identity
+\eqref{eq:G}, and the coefficients of \(H_k\) count multiplicity
+vectors for the allowed parts.
+
+The formal proof gives a second derivation of
+Lemma~\ref{lem:restricted}. At height five define
+\[
+ D(q)=\prod_{j=2}^{5}(1-q^j),\qquad
+ P(q)=343-860q+739q^2-216q^3 .
+\]
+Taking fourth differences of the cubic gives
+\(\sum_{n\ge0}(n+7)^3q^n=P(q)/(1-q)^4\).
+The project supplies an explicit \(E(q)\in\mathbb Z[q]\) and checks,
+as a polynomial identity,
+\[
+ (1-q^{60})^2\bigl(720(1-q)^4-P(q)D(q)\bigr)
+       =E(q)D(q)(1-q)^4.
+\]
+Consequently \(720H_5(q)-\sum_{n\ge0}(n+7)^3q^n
+= E(q)/(1-q^{60})^2\). Each coefficient on the right has absolute
+value at most \((n+1)\sum_i |[q^i]E(q)|\). This establishes the
+base estimate at every index.
+
+For the induction, put \(K_k=k!(k-2)!\), \(c_k=S/2\) for the current
+height, and \(R_k(v)=K_ka_k(v)-(v+c_k)_+^{k-2}\).
+For \(j=k+1\), one has \(c_j=c_k+j/2\),
+\(K_j=j(k-1)K_k\), and \(a_j(v)-a_j(v-j)=a_k(v)\).
+At \(v\ge0\), set \(z=v+c_k\). Since \(c_k\ge j/2\), the
+binomial theorem gives
+\[
+ (z+j/2)^{k-1}-(z-j/2)^{k-1}
+      =j(k-1)z^{k-2}+O_k((1+v)^{k-4}).
+\]
+The constant and quadratic terms in the increment cancel.
+It follows that \(R_j(v)-R_j(v-j)=O_k((1+v)^{k-4})\) by the
+induction hypothesis. Iteration reaches a negative index in at
+most \(v+1\) steps, where the residual is bounded in terms of \(j\).
+Thus \(R_j(v)=O_j((1+v)^{j-4})\), as required.
+
+For Proposition~\ref{prop:uniform}, the formal proof varies the
+subset shift by a real parameter \(u\), replacing \(x-|J|\) by
+\(x-|J|-u\varepsilon_J\) in each truncated power. Reflection
+\(i\mapsto k+1-i\) preserves subset size and negates
+\(\varepsilon_J\), so the derivative of the sum at zero vanishes.
+Its second derivative is bounded uniformly on
+\([0,k]\times[0,1]\) in \((x,u)\). Setting \(u=1/L\) gives
+the error in \eqref{eq:uniform} after multiplication by \(L^{k-2}\).
+
+The project uses Lean~4.24.0 and Mathlib at revision
+\texttt{f897ebcf72cd} (v4.24.0).
+The transitive axiom report for the original conjecture lists
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
+Running \texttt{bash verify.sh} in \texttt{anc/lean} builds the project
+with the pinned dependencies and checks the output of \texttt{\#print axioms}
+for the main theorem and thirteen supporting declarations.
+
+\section{Computational checks}
+
+An accompanying Python program independently checks the identities and parameter
+conventions using exact integer and rational arithmetic.
+The finite scan
+\[
+5\le k\le16,\qquad 1\le\ell\le160,
+\qquad 0\le t\le\left\lfloor\frac{k\ell}{k-2}\right\rfloor
+\]
+with the parity condition imposed contains \(149\,252\) admissible
+tuples with \(s\ne1\).
+Of these tuples, \(245\) fail unimodality or nonnegativity, all with
+\(\ell\le25\). The scan gives no threshold beyond the tested range. Gaussian coefficients are cross-checked using a
+separate \(q\)-Pascal recurrence, and all failing tuples are retained
+with an exact negative first-difference witness.
+The ancillary verifier regenerates the full scan and its witnesses.
+
+\section*{Author Contributions and AI Disclosure}
+The author initiated and directed the research, established the
+problem-selection criteria, designed the verification workflow, and
+evaluated and integrated the results.
+
+GPT-6 Pro (OpenAI, via ChatGPT) identified the conjecture, developed
+the mathematical proof, and wrote the initial verification code. GPT-6.2 Astra (OpenAI, via Codex) audited the
+proof, developed the Lean~4 formalization, established an alternative
+algebraic proof of the restricted-partition estimate, and performed
+computational verification. Both models contributed to manuscript
+preparation. Additional model runs cross-checked the arguments and
+reviewed the related literature.
+
+The author assumes responsibility for the final manuscript and its
+submission.
+
+\begin{thebibliography}{9}
+
+\bibitem{Alpoge14}
+L. Alpoge,
+\emph{Proof of a conjecture of Stanley--Zanello},
+J. Combin. Theory Ser. A \textbf{125} (2014), 166--176.
+\href{https://doi.org/10.1016/j.jcta.2014.03.004}{doi:10.1016/j.jcta.2014.03.004}.
+\href{https://arxiv.org/abs/1308.2358}{arXiv:1308.2358}.
+
+\bibitem{BGK}
+M. Beck, I. M. Gessel, and T. Komatsu,
+\emph{The polynomial part of a restricted partition function related
+to the Frobenius problem},
+Electron. J. Combin. \textbf{8} (2001), no.~1, Note~7.
+\href{https://doi.org/10.37236/1592}{doi:10.37236/1592}.
+\href{https://arxiv.org/abs/math/0306036}{arXiv:math/0306036}.
+
+\bibitem{CJ}
+W. Y. C. Chen and I. D. D. Jia,
+\emph{Semi-invariants of binary forms pertaining to a unimodality
+theorem of Reiner and Stanton},
+Int. J. Math. \textbf{32} (2021), no.~12, 2140003.
+\href{https://doi.org/10.1142/S0129167X21400036}{doi:10.1142/S0129167X21400036}.
+\href{https://arxiv.org/abs/2011.01467}{arXiv:2011.01467}.
+
+\bibitem{Kang}
+M. Kang,
+\emph{Strict unimodality of a Gaussian difference for even $n$},
+preprint (2026).
+\href{https://mathdb.com/abs/2611.00169v1}{MathDB:2611.00169v1}.
+
+\bibitem{KUW23}
+C. Koutschan, A. K. Uncu, and E. Wong,
+\emph{A unified approach to unimodality of Gaussian polynomials},
+Proceedings of the 2023 International Symposium on Symbolic and
+Algebraic Computation (ISSAC '23), 434--442.
+\href{https://doi.org/10.1145/3597066.3597113}{doi:10.1145/3597066.3597113}.
+\href{https://arxiv.org/abs/2302.04067}{arXiv:2302.04067}.
+
+\bibitem{MPP}
+S. Melczer, G. Panova, and R. Pemantle,
+\emph{Counting partitions inside a rectangle},
+SIAM J. Discrete Math. \textbf{34} (2020), no.~4, 2388--2410.
+\href{https://doi.org/10.1137/20M1315828}{doi:10.1137/20M1315828}.
+\href{https://arxiv.org/abs/1805.08375}{arXiv:1805.08375}.
+
+\bibitem{RS98}
+V. Reiner and D. Stanton,
+\emph{Unimodality of differences of specialized Schur functions},
+J. Algebraic Combin. \textbf{7} (1998), no.~1, 91--107.
+\href{https://doi.org/10.1023/A:1008623312887}{doi:10.1023/A:1008623312887}.
+
+\bibitem{SZ16}
+R. P. Stanley and F. Zanello,
+\emph{Some asymptotic results on \(q\)-binomial coefficients},
+Ann. Comb. \textbf{20} (2016), no.~3, 623--634.
+\href{https://doi.org/10.1007/s00026-016-0319-8}{doi:10.1007/s00026-016-0319-8}.
+\href{https://arxiv.org/abs/1503.06367}{arXiv:1503.06367}.
+
+\bibitem{SZ20}
+R. P. Stanley and F. Zanello,
+\emph{A generalization of a 1998 unimodality conjecture of Reiner
+and Stanton},
+J. Combin. \textbf{11} (2020), no.~1, 111--126.
+\href{https://doi.org/10.4310/JOC.2020.v11.n1.a5}{doi:10.4310/JOC.2020.v11.n1.a5}.
+\href{https://arxiv.org/abs/1711.10033}{arXiv:1711.10033}.
+
+\end{thebibliography}
+\end{document}
