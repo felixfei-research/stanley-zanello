@@ -1,0 +1,4 @@
+Project materials by Felix Dongting Fei (2026).
+The project's Lean and Python software, build scripts and software documentation are offered under the MIT License. See lean/LICENSE (anc/lean/LICENSE in the arXiv bundle).
+The manuscript (PDF and LaTeX), verification results, reference data, checksums and audit certificates are offered under Creative Commons Attribution 4.0 International, to the extent the author holds applicable rights. See licenses/CC-BY-4.0.txt (anc/licenses/CC-BY-4.0.txt in the arXiv bundle) or https://creativecommons.org/licenses/by/4.0/.
+Third-party materials and dependencies retain their respective licenses.
