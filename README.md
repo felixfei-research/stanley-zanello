@@ -16,11 +16,9 @@ shasum -a 256 -c SHA256SUMS
 
 Lean 4.24.0 and Mathlib v4.24.0 (f897ebcf72cd16f89ab4577d0c826cd14afaafc7) are pinned. The script builds the library and audits fourteen declarations. The transitive axioms of `SZ.original_conjecture` are `propext`, `Classical.choice` and `Quot.sound`. The finite scan checks bounded parameter ranges independently.
 
-## Author and contributions
+## Author
 
-Felix Dongting Fei, Independent Researcher · [ORCID](https://orcid.org/0009-0000-8891-7101) · felix.d.fei@gmail.com
-
-Felix Dongting Fei directed the research. GPT-6 Pro developed the mathematical proof, and GPT-6.2 Astra audited and formalized it in Lean 4. See the [full contribution statement](paper/Stanley-Zanello-Final.pdf#page=8).
+Felix Dongting Fei · [Author contributions](paper/Stanley-Zanello-Final.pdf#page=8)
 
 ## Licensing
 
