@@ -1,6 +1,6 @@
 # Stanley–Zanello Conjecture 1.1(iv)
 
-For every fixed integer height k ≥ 5 and all sufficiently large upper indices m, the centered difference of Gaussian polynomials in [Stanley and Zanello’s Conjecture 1.1(iv)](https://arxiv.org/abs/1711.10033) has nonnegative, unimodal coefficients for every admissible b except the shift-one case. The threshold depends only on k. The proof combines an edge injection with a uniform first-difference estimate obtained by averaging shifted restricted-partition counts over subsets of fixed cardinality.
+For every fixed integer height k ≥ 5 and all sufficiently large upper indices m, the centered difference of Gaussian polynomials in [Stanley and Zanello’s Conjecture 1.1(iv)](https://arxiv.org/abs/1711.10033) has nonnegative, unimodal coefficients for every admissible b except the shift-one case. The threshold depends only on k. The AI-assisted proof combines an edge injection with a uniform first-difference estimate obtained by averaging shifted restricted-partition counts over subsets of fixed cardinality.
 
 [Paper (PDF)](paper/Stanley-Zanello-Final.pdf) · [Main theorem](lean/SZ/Original.lean) · [Axiom audit](certificates/axioms.log)
 
