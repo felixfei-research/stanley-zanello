@@ -27,7 +27,7 @@
 \ifx\AuthorEmail\empty\else\email{\AuthorEmail}\fi
 \date{26 November 2026}
 \subjclass[2020]{05A17, 05A16}
-\keywords{Gaussian polynomial, integer partition, unimodality, asymptotic enumeration}
+\keywords{Gaussian polynomial, integer partition, unimodality, asymptotic enumeration, formal verification, Lean 4}
 \hypersetup{pdftitle={\PaperTitle},pdfauthor={\AuthorName}}
 
 \begin{document}
@@ -42,11 +42,12 @@ estimate for first differences in the remaining range. A two-term
 restricted-partition estimate and averaging over subsets of a fixed
 cardinality give a cardinal-spline approximation with error
 \(O_k(\ell^{k-4})\), where \(\ell\) is the width of the height-\(k\) rectangle.
-From degree \(\ell\) to \(\lfloor k\ell/2\rfloor\), its first differences
+From degree \(\ell\) to \(\lfloor k\ell/2\rfloor\), the first differences of the larger Gaussian polynomial
 have a lower bound of order \(\ell^{k-3}\), while those of the shifted
 term are uniformly \(O_k(\ell^{k-4})\).
-A complete Lean~4 formalization proves Conjecture~1.1(iv) in its original
-integer parameters.
+The conjecture, in its original integer parameters, is fully formalized and
+machine-verified in Lean~4, with the main theorem depending only on Lean's
+standard foundational axioms.
 \end{abstract}
 \maketitle
 \enlargethispage{2pt}
@@ -128,6 +129,10 @@ A width threshold \(W(k)\) gives the threshold \(k+W(k)\) in \(m\). Thus Theorem
 \cite[Conjecture~1.1(iv)]{SZ20}.
 The quantifier on \(m\) distinguishes this asymptotic result from the
 earlier Reiner--Stanton conjecture at finite parameters.
+
+The complete proof has also been formalized and machine-verified in Lean~4.
+The formalization, verification scripts, and reproducibility materials are
+publicly available in the \href{https://github.com/felixfei-research/stanley-zanello}{accompanying repository}.
 
 The asymptotic behavior of Gaussian coefficients with one parameter
 fixed was studied by Stanley and Zanello~\cite{SZ16}.
@@ -590,9 +595,12 @@ the error in \eqref{eq:uniform} after multiplication by \(L^{k-2}\).
 The source repository is \url{https://github.com/felixfei-research/stanley-zanello}.
 The project uses Lean~4.24.0 and Mathlib at revision
 \texttt{f897ebcf72cd} (v4.24.0).
-The transitive axiom report for the original conjecture lists
+The only axioms of the main theorem are
 \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
-Running \texttt{bash verify.sh} in \texttt{anc/lean} builds the project
+The project sources contain no \texttt{sorry} or \texttt{admit}, and the
+proof uses no additional axioms. Run \texttt{bash verify.sh} from
+\texttt{lean/} in the repository or \texttt{anc/lean/} in the arXiv
+ancillary package. The script builds the project
 with the pinned dependencies and checks the output of \texttt{\#print axioms}
 for the main theorem and thirteen supporting declarations.
 
@@ -608,7 +616,7 @@ The finite scan
 with the parity condition imposed contains \(149\,252\) admissible
 tuples with \(s\ne1\).
 Of these tuples, \(245\) fail unimodality or nonnegativity, all with
-\(\ell\le25\). The scan gives no threshold beyond the tested range. Gaussian coefficients are cross-checked using a
+\(\ell\le25\). These computations do not establish a threshold valid outside the tested range. The general theorem follows from the proof above. Gaussian coefficients are cross-checked using a
 separate \(q\)-Pascal recurrence, and all failing tuples are retained
 with an exact negative first-difference witness.
 The ancillary verifier regenerates the full scan and its witnesses.
@@ -618,7 +626,7 @@ The author initiated and directed the research, established the
 problem-selection criteria, designed the verification workflow, and
 evaluated and integrated the results.
 
-GPT-6 Pro (OpenAI, via ChatGPT) identified the conjecture, developed
+GPT-6 Pro (OpenAI, via ChatGPT) selected the conjecture for investigation, developed
 the mathematical proof, and wrote the initial verification code. GPT-6.2 Astra (OpenAI, via Codex) audited the
 proof, developed the Lean~4 formalization, established an alternative
 algebraic proof of the restricted-partition estimate, and performed

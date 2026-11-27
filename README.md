@@ -18,7 +18,7 @@ Lean 4.24.0 and Mathlib v4.24.0 (f897ebcf72cd16f89ab4577d0c826cd14afaafc7) are p
 
 ## Author
 
-Felix Dongting Fei · [Author contributions](paper/Stanley-Zanello-Final.pdf#page=8)
+Felix Dongting Fei · [Author contributions and AI disclosure](paper/Stanley-Zanello-Final.pdf#page=8)
 
 ## Licensing
 

@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Please cite this work when using the proof or verification materials."
 title: "Uniform First Differences of Gaussian Polynomials and a Proof of the Stanley–Zanello Unimodality Conjecture"
 type: software
-version: 1.0.0
+version: 1.0.1
 authors:
   - family-names: Fei
     given-names: Felix Dongting
