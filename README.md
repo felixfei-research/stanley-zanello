@@ -20,7 +20,7 @@ Lean 4.24.0 and Mathlib v4.24.0 (f897ebcf72cd16f89ab4577d0c826cd14afaafc7) are p
 
 Felix Dongting Fei, Independent Researcher · [ORCID](https://orcid.org/0009-0000-8891-7101) · felix.d.fei@gmail.com
 
-The author initiated and directed the research, set the problem-selection criteria, designed the verification workflow, and evaluated and integrated the results. GPT-6 Pro (OpenAI, via ChatGPT) selected the conjecture, developed the proof and wrote initial verification code. GPT-6.2 Astra (OpenAI, via Codex) audited the argument, developed the Lean formalization and alternative algebraic restricted-partition proof, and performed computational verification. Both models contributed to the manuscript. Additional model runs checked the arguments and literature. The author assumes responsibility for the manuscript and submission.
+Felix Dongting Fei directed the research. GPT-6 Pro developed the mathematical proof, and GPT-6.2 Astra audited and formalized it in Lean 4. See the [full contribution statement](paper/Stanley-Zanello-Final.pdf#page=8).
 
 ## Licensing
 
