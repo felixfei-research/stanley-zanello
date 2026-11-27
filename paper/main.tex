@@ -104,7 +104,9 @@ then
 \begin{equation}\label{eq:F}
 F(q)=G_{k,\ell}(q)-q^sG_{k-2,t}(q)
 \end{equation}
-has nonnegative, symmetric, unimodal coefficients.
+has a nonnegative, unimodal coefficient sequence that is symmetric about
+\(k\ell/2\) when indexed from \(0\) through \(k\ell\), with trailing
+zeros appended if necessary.
 If \(\ell,t\in\NN\) and
 \((k-2)t+2=k\ell\), then the coefficients of \eqref{eq:F},
 with \(s=1\), are not unimodal.
@@ -130,9 +132,7 @@ A width threshold \(W(k)\) gives the threshold \(k+W(k)\) in \(m\). Thus Theorem
 The quantifier on \(m\) distinguishes this asymptotic result from the
 earlier Reiner--Stanton conjecture at finite parameters.
 
-The complete proof has also been formalized and machine-verified in Lean~4.
-The formalization, verification scripts, and reproducibility materials are
-publicly available in the \href{https://github.com/felixfei-research/stanley-zanello}{accompanying repository}.
+The main result has also been formally verified in Lean~4; see Section~\ref{sec:formal}.
 
 The asymptotic behavior of Gaussian coefficients with one parameter
 fixed was studied by Stanley and Zanello~\cite{SZ16}.
@@ -535,7 +535,7 @@ A sequence that drops at the first step and subsequently rises
 cannot be unimodal. This also covers width one.
 \end{proof}
 
-\section{Formal Verification}
+\section{Formal Verification}\label{sec:formal}
 
 The accompanying Lean~4 project proves Theorem~\ref{thm:main} and
 translates the conclusion back to the original parameters. Its public
@@ -595,10 +595,12 @@ the error in \eqref{eq:uniform} after multiplication by \(L^{k-2}\).
 The source repository is \url{https://github.com/felixfei-research/stanley-zanello}.
 The project uses Lean~4.24.0 and Mathlib at revision
 \texttt{f897ebcf72cd} (v4.24.0).
-The only axioms of the main theorem are
-\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
 The project sources contain no \texttt{sorry} or \texttt{admit}, and the
-proof uses no additional axioms. Run \texttt{bash verify.sh} from
+main theorem depends only on the standard axioms \texttt{propext},
+\texttt{Classical.choice} and \texttt{Quot.sound}.
+
+
+Run \texttt{bash verify.sh} from
 \texttt{lean/} in the repository or \texttt{anc/lean/} in the arXiv
 ancillary package. The script builds the project
 with the pinned dependencies and checks the output of \texttt{\#print axioms}
