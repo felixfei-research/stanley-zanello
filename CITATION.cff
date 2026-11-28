@@ -10,3 +10,13 @@ authors:
     email: felix.d.fei@gmail.com
     orcid: "https://orcid.org/0009-0000-8891-7101"
 repository-code: "https://github.com/felixfei-research/stanley-zanello"
+preferred-citation:
+  type: unpublished
+  title: "Uniform first differences of Gaussian polynomials and a proof of the Stanley–Zanello unimodality conjecture"
+  authors:
+    - family-names: Fei
+      given-names: Felix Dongting
+      orcid: "https://orcid.org/0009-0000-8891-7101"
+    - family-names: Shan
+      given-names: Chenxi
+      orcid: "https://orcid.org/0009-0008-7893-8505"

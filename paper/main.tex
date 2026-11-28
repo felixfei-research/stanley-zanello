@@ -1,13 +1,13 @@
-% SPDX-License-Identifier: CC-BY-4.0
-\documentclass[11pt]{amsart}
+% Revised journal manuscript; original mathematical material retained from v1.0.1.
+% The original manuscript and research artifacts are licensed CC BY 4.0 / MIT as applicable.
+\documentclass[3p,11pt,number]{elsarticle}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage[expansion=false]{microtype}
+\usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
-\input{author.tex}
-
+\urlstyle{same}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -18,39 +18,45 @@
 \newcommand{\qbinom}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}_q}
 \newcommand{\NN}{\mathbb Z_{\ge0}}
 \newcommand{\coeff}[1]{[q^{#1}]}
-
-\newcommand{\PaperTitle}{Uniform First Differences of Gaussian Polynomials and a Proof of the Stanley\textendash{}Zanello Unimodality Conjecture}
-\title[First differences of Gaussian polynomials]{\PaperTitle}
-\author{\AuthorName}
-\thanks{ORCID: \href{https://orcid.org/0009-0000-8891-7101}{0009-0000-8891-7101}. Licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.}
-\ifx\AuthorAffiliation\empty\else\address{\AuthorAffiliation}\fi
-\ifx\AuthorEmail\empty\else\email{\AuthorEmail}\fi
-\date{26 November 2026}
-\subjclass[2020]{05A17, 05A16}
-\keywords{Gaussian polynomial, integer partition, unimodality, asymptotic enumeration, formal verification, Lean 4}
-\hypersetup{pdftitle={\PaperTitle},pdfauthor={\AuthorName}}
-
+\newcommand{\PaperTitle}{Uniform first differences of Gaussian polynomials and a proof of the Stanley\textendash{}Zanello unimodality conjecture}
+\journal{Discrete Mathematics}
+\hypersetup{pdftitle={\PaperTitle},pdfauthor={Felix Dongting Fei; Chenxi Shan}}
 \begin{document}
+\begin{frontmatter}
+\title{\PaperTitle}
+\author[fei]{Felix Dongting Fei\corref{cor}\fnref{orcidfei}}
+\ead{felix.d.fei@gmail.com}
+\author[shan]{Chenxi Shan\fnref{orcidshan}}
+\ead{shanchenxi00@gmail.com}
+\address[fei]{Independent Researcher, London, United Kingdom}
+\address[shan]{City University of Hong Kong, Hong Kong SAR, China}
+\cortext[cor]{Corresponding author.}
+\fntext[orcidfei]{ORCID: \href{https://orcid.org/0009-0000-8891-7101}{0009-0000-8891-7101}.}
+\fntext[orcidshan]{ORCID: \href{https://orcid.org/0009-0008-7893-8505}{0009-0008-7893-8505}.}
 \begin{abstract}
 We prove the asymptotic unimodality conjecture of Stanley and Zanello for
 differences of Gaussian polynomials whose lower indices differ by two.
 For every fixed \(k\ge5\), all admissible centered differences are
 coefficientwise nonnegative and unimodal once the upper parameter is
-sufficiently large, apart from the exception stated in their conjecture.
+sufficiently large, except for the shift-one case in Conjecture~1.1(iv), which is not
+unimodal.
 The proof combines an injection for the edge coefficients with a uniform
 estimate for first differences in the remaining range. A two-term
 restricted-partition estimate and averaging over subsets of a fixed
 cardinality give a cardinal-spline approximation with error
 \(O_k(\ell^{k-4})\), where \(\ell\) is the width of the height-\(k\) rectangle.
-From degree \(\ell\) to \(\lfloor k\ell/2\rfloor\), the first differences of the larger Gaussian polynomial
-have a lower bound of order \(\ell^{k-3}\), while those of the shifted
+From degree \(\ell\) to \(\lfloor k\ell/2\rfloor\), the first differences
+of the larger Gaussian polynomial have a lower bound of order \(\ell^{k-3}\), while those of the shifted
 term are uniformly \(O_k(\ell^{k-4})\).
 The conjecture, in its original integer parameters, is fully formalized and
 machine-verified in Lean~4, with the main theorem depending only on Lean's
 standard foundational axioms.
 \end{abstract}
-\maketitle
-\enlargethispage{2pt}
+\begin{keyword}
+Gaussian polynomial \sep Integer partition \sep Unimodality \sep Asymptotic enumeration \sep Formal verification \sep Lean 4
+\MSC[2020] 05A17 \sep 05A16
+\end{keyword}
+\end{frontmatter}
 
 \section{Introduction and main result}
 
@@ -535,7 +541,7 @@ A sequence that drops at the first step and subsequently rises
 cannot be unimodal. This also covers width one.
 \end{proof}
 
-\section{Formal Verification}\label{sec:formal}
+\section{Formal verification}\label{sec:formal}
 
 The accompanying Lean~4 project proves Theorem~\ref{thm:main} and
 translates the conclusion back to the original parameters. Its public
@@ -601,8 +607,7 @@ main theorem depends only on the standard axioms \texttt{propext},
 
 
 Run \texttt{bash verify.sh} from
-\texttt{lean/} in the repository or \texttt{anc/lean/} in the arXiv
-ancillary package. The script builds the project
+\texttt{lean/} in the repository or the accompanying supplementary archive. The script builds the project
 with the pinned dependencies and checks the output of \texttt{\#print axioms}
 for the main theorem and thirteen supporting declarations.
 
@@ -621,25 +626,74 @@ Of these tuples, \(245\) fail unimodality or nonnegativity, all with
 \(\ell\le25\). These computations do not establish a threshold valid outside the tested range. The general theorem follows from the proof above. Gaussian coefficients are cross-checked using a
 separate \(q\)-Pascal recurrence, and all failing tuples are retained
 with an exact negative first-difference witness.
-The ancillary verifier regenerates the full scan and its witnesses.
+The supplementary verifier regenerates the full scan and its witnesses.
 
-\section*{Author Contributions and AI Disclosure}
-The author initiated and directed the research, established the
-problem-selection criteria, designed the verification workflow, and
-evaluated and integrated the results.
+\section{Research methodology}
+The research was initiated and directed by Felix Dongting Fei, who set the
+problem-selection criteria, designed the verification workflow, and evaluated
+and integrated the results. ChatGPT (GPT-6 Pro, OpenAI) was used to identify
+the conjecture, develop the mathematical proof and draft the initial
+verification code. Codex (GPT-6.2 Astra, OpenAI) was used for proof audit,
+the alternative algebraic derivation, Lean~4 formalization and computational
+verification. Additional model-assisted checks examined the arguments and
+related literature. The written proof, formal sources and independent exact
+computations are provided to permit verification of the results.
 
-GPT-6 Pro (OpenAI, via ChatGPT) selected the conjecture for investigation, developed
-the mathematical proof, and wrote the initial verification code. GPT-6.2 Astra (OpenAI, via Codex) audited the
-proof, developed the Lean~4 formalization, established an alternative
-algebraic proof of the restricted-partition estimate, and performed
-computational verification. Both models contributed to manuscript
-preparation. Additional model runs cross-checked the arguments and
-reviewed the related literature.
+\section*{Data and code availability}
+The Lean~4 project, exact computational verifier and supporting results are
+available in the supplementary archive and at
+\url{https://github.com/felixfei-research/stanley-zanello}.
 
-The author assumes responsibility for the final manuscript and its
-submission.
+\section*{CRediT authorship contribution statement}
+\textbf{Felix Dongting Fei:} Conceptualization, Methodology, Project administration,
+Validation, Writing -- review \& editing.
+\textbf{Chenxi Shan:} Validation, Writing -- review \& editing.
+
+\section*{Funding}
+This research received no specific grant from any funding agency in the
+public, commercial or not-for-profit sectors.
+
+\section*{Declaration of competing interest}
+The authors declare that they have no known competing financial interests
+or personal relationships that could have appeared to influence the work
+reported in this paper.
+
+\section*{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
+During the preparation of this work, the authors used ChatGPT and Codex
+(OpenAI) to assist with manuscript drafting, organization and revision.
+After using these tools, the authors reviewed and edited the content as
+needed and take full responsibility for the content of the published article.
 
 \begin{thebibliography}{9}
+
+\bibitem{RS98}
+V. Reiner and D. Stanton,
+\emph{Unimodality of differences of specialized Schur functions},
+J. Algebraic Combin. \textbf{7} (1998), no.~1, 91--107.
+\href{https://doi.org/10.1023/A:1008623312887}{doi:10.1023/A:1008623312887}.
+
+\bibitem{SZ20}
+R. P. Stanley and F. Zanello,
+\emph{A generalization of a 1998 unimodality conjecture of Reiner
+and Stanton},
+J. Combin. \textbf{11} (2020), no.~1, 111--126.
+\href{https://doi.org/10.4310/JOC.2020.v11.n1.a5}{doi:10.4310/JOC.2020.v11.n1.a5}.
+\href{https://arxiv.org/abs/1711.10033}{arXiv:1711.10033}.
+
+\bibitem{KUW23}
+C. Koutschan, A. K. Uncu, and E. Wong,
+\emph{A unified approach to unimodality of Gaussian polynomials},
+Proceedings of the 2023 International Symposium on Symbolic and
+Algebraic Computation (ISSAC '23), 434--442.
+\href{https://doi.org/10.1145/3597066.3597113}{doi:10.1145/3597066.3597113}.
+\href{https://arxiv.org/abs/2302.04067}{arXiv:2302.04067}.
+
+\bibitem{SZ16}
+R. P. Stanley and F. Zanello,
+\emph{Some asymptotic results on \(q\)-binomial coefficients},
+Ann. Comb. \textbf{20} (2016), no.~3, 623--634.
+\href{https://doi.org/10.1007/s00026-016-0319-8}{doi:10.1007/s00026-016-0319-8}.
+\href{https://arxiv.org/abs/1503.06367}{arXiv:1503.06367}.
 
 \bibitem{Alpoge14}
 L. Alpoge,
@@ -647,14 +701,6 @@ L. Alpoge,
 J. Combin. Theory Ser. A \textbf{125} (2014), 166--176.
 \href{https://doi.org/10.1016/j.jcta.2014.03.004}{doi:10.1016/j.jcta.2014.03.004}.
 \href{https://arxiv.org/abs/1308.2358}{arXiv:1308.2358}.
-
-\bibitem{BGK}
-M. Beck, I. M. Gessel, and T. Komatsu,
-\emph{The polynomial part of a restricted partition function related
-to the Frobenius problem},
-Electron. J. Combin. \textbf{8} (2001), no.~1, Note~7.
-\href{https://doi.org/10.37236/1592}{doi:10.37236/1592}.
-\href{https://arxiv.org/abs/math/0306036}{arXiv:math/0306036}.
 
 \bibitem{CJ}
 W. Y. C. Chen and I. D. D. Jia,
@@ -670,14 +716,6 @@ M. Kang,
 preprint (2026).
 \href{https://mathdb.com/abs/2611.00169v1}{MathDB:2611.00169v1}.
 
-\bibitem{KUW23}
-C. Koutschan, A. K. Uncu, and E. Wong,
-\emph{A unified approach to unimodality of Gaussian polynomials},
-Proceedings of the 2023 International Symposium on Symbolic and
-Algebraic Computation (ISSAC '23), 434--442.
-\href{https://doi.org/10.1145/3597066.3597113}{doi:10.1145/3597066.3597113}.
-\href{https://arxiv.org/abs/2302.04067}{arXiv:2302.04067}.
-
 \bibitem{MPP}
 S. Melczer, G. Panova, and R. Pemantle,
 \emph{Counting partitions inside a rectangle},
@@ -685,26 +723,13 @@ SIAM J. Discrete Math. \textbf{34} (2020), no.~4, 2388--2410.
 \href{https://doi.org/10.1137/20M1315828}{doi:10.1137/20M1315828}.
 \href{https://arxiv.org/abs/1805.08375}{arXiv:1805.08375}.
 
-\bibitem{RS98}
-V. Reiner and D. Stanton,
-\emph{Unimodality of differences of specialized Schur functions},
-J. Algebraic Combin. \textbf{7} (1998), no.~1, 91--107.
-\href{https://doi.org/10.1023/A:1008623312887}{doi:10.1023/A:1008623312887}.
-
-\bibitem{SZ16}
-R. P. Stanley and F. Zanello,
-\emph{Some asymptotic results on \(q\)-binomial coefficients},
-Ann. Comb. \textbf{20} (2016), no.~3, 623--634.
-\href{https://doi.org/10.1007/s00026-016-0319-8}{doi:10.1007/s00026-016-0319-8}.
-\href{https://arxiv.org/abs/1503.06367}{arXiv:1503.06367}.
-
-\bibitem{SZ20}
-R. P. Stanley and F. Zanello,
-\emph{A generalization of a 1998 unimodality conjecture of Reiner
-and Stanton},
-J. Combin. \textbf{11} (2020), no.~1, 111--126.
-\href{https://doi.org/10.4310/JOC.2020.v11.n1.a5}{doi:10.4310/JOC.2020.v11.n1.a5}.
-\href{https://arxiv.org/abs/1711.10033}{arXiv:1711.10033}.
+\bibitem{BGK}
+M. Beck, I. M. Gessel, and T. Komatsu,
+\emph{The polynomial part of a restricted partition function related
+to the Frobenius problem},
+Electron. J. Combin. \textbf{8} (2001), no.~1, Note~7.
+\href{https://doi.org/10.37236/1592}{doi:10.37236/1592}.
+\href{https://arxiv.org/abs/math/0306036}{arXiv:math/0306036}.
 
 \end{thebibliography}
 \end{document}

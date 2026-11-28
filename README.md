@@ -16,9 +16,9 @@ shasum -a 256 -c SHA256SUMS
 
 Lean 4.24.0 and Mathlib v4.24.0 (f897ebcf72cd16f89ab4577d0c826cd14afaafc7) are pinned. The script builds the library and audits fourteen declarations. The transitive axioms of `SZ.original_conjecture` are `propext`, `Classical.choice` and `Quot.sound`. The finite scan checks bounded parameter ranges independently.
 
-## Author
+## Authors
 
-Felix Dongting Fei · [Author contributions and AI disclosure](paper/Stanley-Zanello-Final.pdf#page=8)
+Felix Dongting Fei and Chenxi Shan · [Author contributions and AI disclosure](paper/Stanley-Zanello-Final.pdf#page=9)
 
 ## Licensing
 
